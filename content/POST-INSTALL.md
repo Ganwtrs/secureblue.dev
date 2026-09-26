@@ -10,6 +10,7 @@ permalink: /post-install
 {: #table-of-contents}
 
 - Essential
+  - [Reboot into updated system](#reboot)
   - [Subscribe to secureblue release notifications](#release-notifications)
   - [Enroll Secure Boot key](#secureboot)
   - [Kernel arguments](#kargs)
@@ -27,6 +28,11 @@ permalink: /post-install
   - [Trivalent Flags](#trivalent-flags)
 
 <hr>
+
+## [Reboot into updated system](#reboot)
+{: #reboot}
+
+Before doing any validation or app installs, reboot into the updated system after booting into the initial post-install system.
 
 ## [Subscribe to secureblue release notifications](#release-notifications)
 {: #release-notifications}
