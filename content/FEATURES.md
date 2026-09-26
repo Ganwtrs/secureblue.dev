@@ -21,7 +21,7 @@ permalink: /features
 ## [Trivalent: hardened default browser](#trivalent-browser)
 {: #trivalent-browser}
 
-secureblue includes Trivalent as the default browser. Trivalent is a hardened variant of Chromium providing enhanced security, inspired by GrapheneOS’s Vanadium. 
+secureblue includes Trivalent as the default browser. Trivalent is a hardened variant of Chromium providing enhanced security, inspired by GrapheneOS’s Vanadium.
 
 Do note that despite getting as close as possible, it does not match to Vanadium currently due to poor security in the desktop Linux ecosystem and a lack of availability of hardware security features like MTE. Many patches from Vanadium that are not Android-specific are used. Additionally, it expands on many desktop and Linux-centric hardening. Moreover, due to a decent amount of automation work, weekly updates are often shipped same-day as upstream or the day after, at a very consistent pace.
 
@@ -41,6 +41,17 @@ Some of the features added compared to standard desktop Chromium:
 - More complete state partitioning without origin trial opt-out
 - High entropy client hints are replaced with the standard placeholder values used in Chromium's reduced user agent for both the browser and WebView to close a loophole where Chromium is still sharing the major OS version, device model and browser minor/build/patch version with any server requesting it via client hints
 - Trivial subdomain hiding disabled
+
+Better default settings, including non-user-facing flags:
+
+- Reduce Accept-Language header by default (only available via chrome://flags)
+- Third party cookies disabled by default
+- Payment support disabled by default
+- Website background sync disabled by default
+- Protected media (DRM) disabled by default
+- Hyperlink auditing disabled by default
+- Do Not Track enabled by default mainly to avoid users differentiating themselves from others by enabling it since it has no real value
+- WebRTC IP handling policy set to the most private value by default instead of the least private value
 
 ## [Filling known security holes](#filling-security-holes)
 {: #filling-security-holes}
