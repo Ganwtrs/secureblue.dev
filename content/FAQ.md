@@ -31,6 +31,7 @@ permalink: /faq
   - [Why does secureblue include Homebrew?](#brew)
   - [Does secureblue use "linux-hardened"?](#linux-hardened)
   - [Why are upgrades so large?](#upgrade-size)
+  - [How are Flatpak updates handled?](#flatpak-update)
 
 - [Usage](#usage)
   - [How do I update the system?](#update)
@@ -209,6 +210,11 @@ There are some important ways in which our kernel is preferable to linux-hardene
 {: #upgrade-size}
 
 This is an issue with rpm-ostree image-based systems generally, and not specific to secureblue. Ideally, upgrades would come in the form of a zstd-compressed container diff, but it's not there yet. Check out [this upstream issue](https://github.com/coreos/rpm-ostree/issues/4012) for more information.
+
+### [How are Flatpak updates handled?](#flatpak-update)
+{: #flatpak-update}
+
+Flatpak updates are handled by systemd timers, not Bazaar.
 
 <hr>
 
