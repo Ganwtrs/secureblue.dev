@@ -31,7 +31,6 @@ permalink: /faq
   - [Why does secureblue include Homebrew?](#brew)
   - [Does secureblue use "linux-hardened"?](#linux-hardened)
   - [Why are upgrades so large?](#upgrade-size)
-  - [How are Flatpak updates handled?](#flatpak-update)
 
 - [Usage](#usage)
   - [How do I update the system?](#update)
@@ -211,11 +210,6 @@ There are some important ways in which our kernel is preferable to linux-hardene
 
 This is an issue with rpm-ostree image-based systems generally, and not specific to secureblue. Ideally, upgrades would come in the form of a zstd-compressed container diff, but it's not there yet. Check out [this upstream issue](https://github.com/coreos/rpm-ostree/issues/4012) for more information.
 
-### [How are Flatpak updates handled?](#flatpak-update)
-{: #flatpak-update}
-
-Flatpak updates are handled by systemd timers, not Bazaar.
-
 <hr>
 
 ## [Usage](#usage)
@@ -235,7 +229,7 @@ If you need to update your system manually, for example after a severe CVE is pa
 
 - `systemctl disable rpm-ostreed-automatic.timer` disables automatic system updates. To update manually, run `ujust update-system`.
 - If you are on a UKI image ([experimental](https://github.com/secureblue/secureblue/blob/live/uki/README.md)) `systemctl disable bootc-upgrade.timer`, To update manually, run `ujust update-system`.
-- `systemctl disable flatpak-system-update.timer` and `systemctl disable --global flatpak-user-update.timer` disable automatic updates for system Flatpaks and user Flatpaks, respectively. To update manually, run `flatpak update`.
+- `systemctl disable flatpak-system-update.timer` and `systemctl disable --global flatpak-user-update.timer` disable automatic updates for system Flatpaks and user Flatpaks, respectively. To update manually, run `flatpak update`. Flatpak updates are handled by systemd timers, not Bazaar.
 - `systemctl disable --global brew-upgrade.timer brew-update.timer` disables automatic Homebrew updates. To update manually, run `brew update && brew upgrade`.
 - `systemctl disable podman-auto-update.timer` and `systemctl disable --global podman-auto-update.timer` disable automatic Podman container updates for system and user containers, respectively. To update manually, use `podman update` on your containers.
 
