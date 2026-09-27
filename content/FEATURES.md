@@ -11,7 +11,6 @@ permalink: /features
 
 - Install and enable [hardened_malloc](https://github.com/GrapheneOS/hardened_malloc) globally, including for Flatpaks.
 - Install [Trivalent](https://github.com/secureblue/Trivalent), our security-focused, Chromium-based browser inspired by [Vanadium](https://github.com/GrapheneOS/Vanadium). <sup>[Why Chromium-based?](https://grapheneos.org/usage#web-browsing)</sup> <sup>[Why not a Flatpak?](https://forum.vivaldi.net/post/669805)</sup>
-- SELinux [confinement](https://github.com/secureblue/Trivalent/blob/live/selinux/trivalent.te) for Trivalent.
 - Kernel hardening via sysctl. <sup>[details](https://github.com/secureblue/secureblue/blob/live/files/system/usr/lib/sysctl.d/55-hardening.conf)</sup>
 - Kernel hardening via kernel arguments. <sup>[details](/articles/kargs)</sup>
 - Configure chronyd to use Network Time Security (NTS).
@@ -23,24 +22,21 @@ permalink: /features
 
 secureblue includes Trivalent as the default browser. Trivalent is a hardened variant of Chromium providing enhanced security, inspired by GrapheneOS’s Vanadium.
 
-Do note that despite getting as close as possible, it does not match to Vanadium currently due to poor security in the desktop Linux ecosystem and a lack of availability of hardware security features like MTE. Many patches from Vanadium that are not Android-specific are used. Additionally, it expands on many desktop and Linux-centric hardening. Moreover, due to a decent amount of automation work, weekly updates are often shipped same-day as upstream or the day after, at a very consistent pace.
+Some of the features added compared to Google Chrome:
 
-Some of the features added compared to standard desktop Chromium:
-
-- Type-based Control Flow Integrity (CFI)
-- Strong stack protector
-- Automatic zero-initialized variables
-- Well-defined signed overflow
+- SELinux [confinement](https://github.com/secureblue/Trivalent/blob/live/selinux/trivalent.te).
 - Strict site isolation and sandboxed iframes
 - JavaScript JIT disabled by default with per-site toggle via drop-down permission menu
-- Enable support for the DrumBrake WebAssembly interpreter previously exclusive to Microsoft Edge, to support WebAssembly when JIT compilation is disabled
-- Dynamic code execution is blocked for processes without the JavaScript JIT enabled as an extension to the seccomp-bpf sandbox
+- Add support to optionally enable the DrumBrake WebAssembly interpreter previously exclusive to Microsoft Edge, to support WebAssembly when JIT compilation is disabled
+- Dynamic code execution is blocked for processes without JavaScript JIT enabled as an extension to the seccomp-bpf sandbox
 - WebGPU disabled for attack surface reduction
 - WebRTC IP handling policy toggle to control peer-to-peer WebRTC mode
 - High performance content filtering engine with a per-site toggle using EasyList, EasyPrivacy and EasyList's Adblock Warning Removal List as the primary filters with EasyList's supplementary regional lists enabled based on enabled browser languages
 - More complete state partitioning without origin trial opt-out
 - High entropy client hints are replaced with the standard placeholder values used in Chromium's reduced user agent for both the browser and WebView to close a loophole where Chromium is still sharing the major OS version, device model and browser minor/build/patch version with any server requesting it via client hints
 - Trivial subdomain hiding disabled
+
+These features, as well as more technical features, can be found in [Trivalent’s patches directory](https://github.com/secureblue/Trivalent/tree/live/patches).
 
 Better default settings, including non-user-facing flags:
 
